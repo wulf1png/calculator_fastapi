@@ -750,8 +750,8 @@ def du3_dt(u,t,c,f):
 # Указывает маршрут /lab3 до web-интерфеса, созданного для ввода значений из Практической Работы 3
 @app.get("/lab3")
 async def main3():
-    # Возващаем в качетсве ответа HTML-страницу, расположенную по адресу /calculator_fastapi/lab3.html
-    return FileResponse("./calculator_fastapi/lab3.html")
+    # Возващаем в качетсве ответа HTML-страницу, расположенную по адресу /templates/lab3.html
+    return FileResponse("./templates/lab3.html")
 
 
 # Указываем маршрут /api/lab3/count, по которому можно получить результаты вычислений для Практической работы 3
