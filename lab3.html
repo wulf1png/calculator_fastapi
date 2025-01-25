@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТИПС2024 - Работа 3</title>
+    <style>
+        .scrollable::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .scrollable::-webkit-scrollbar-track {
+            background: rgb(166, 193, 166);
+        }
+
+        .scrollable::-webkit-scrollbar-thumb {
+            background-color: green;
+            border: 2px solid rgb(0, 75, 0);
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #f4f4f9;
+            font-family: 'Verdana', sans-serif;
+            color: #333;
+        }
+
+        sub {
+            margin-top: 12px;
+        }
+
+        sup {
+            margin-top: -12px;
+        }
+
+        .sub {
+            margin-left: -6px;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Arial';
+        }
+
+        p {
+            margin: 0px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            padding-top: 3px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .x0 {
+            width: calc((99% - 760px));
+        }
+
+        .z {
+            width: 350px;
+        }
+
+        .f {
+            width: 410px;
+        }
+
+        h4 {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 30px;
+            font-size: 20px;
+        }
+
+        .inputs {
+            height: calc(100% - 40px);
+            overflow-y: scroll;
+        }
+
+        .x0 input,
+        .z input {
+            border: 0;
+            border-left: 1px solid black;
+            text-align: center;
+            height: 100%;
+            background-color: rgb(208, 255, 162);
+            font-size: 16px;
+        }
+
+        .input-block {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid black;
+            padding: 1px;
+            background-color: rgb(220, 255, 220);
+            color: black
+        }
+
+            .input-block label {
+                width: 80%;
+                font-size: 16px;
+                padding: 3px;
+                font-weight: 500;
+            }
+
+            .input-block input {
+                width: 20%;
+                text-align: center;
+            }
+
+        .x0 .input-block label,
+        .x0 header .p-title {
+            width: 55%;
+        }
+
+        .x0 header .p,
+        .x0 input {
+            width: 15%;
+        }
+
+        header.input-block {
+            height: 30px;
+            overflow-y: scroll;
+        }
+
+        .x0 header p {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .z header .p-title {
+            width: 100%;
+        }
+
+        .c header .p {
+            width: 20%;
+        }
+
+        .z header p {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            height: 40px;
+        }
+
+        .f header .p-title {
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .function {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid black;
+            width: 100%;
+            padding: 3px;
+            background-color: rgb(220, 255, 220);
+        }
+
+        .f-title {
+            width: 75px !important;
+            height: 100%;
+            font-size: 14px;
+        }
+
+        .function-block {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 1px;
+            margin: 0 2px;
+        }
+
+        .function label {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            font-size: 14px;
+            width: 30px;
+        }
+
+        .z .function label {
+            width: 16px;
+        }
+
+        .function input {
+            text-align: center;
+            width: 50px;
+            height: 30px;
+            background-color: rgb(208, 255, 162);
+            font-size: 16px;
+            border: 1px solid black;
+        }
+
+        #result {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.262);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inner {
+            width: 98vw;
+            height: 98vh;
+            background-color: white;
+        }
+
+        .inner-header {
+            height: 30px;
+            background-color: rgb(0, 45, 0);
+            display: flex;
+            justify-content: end;
+        }
+
+        #close {
+            background-color: red;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            color: white;
+            font-size: 20px;
+        }
+
+        .graph {
+            height: calc(98vh - 30px);
+            width: 98vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            overflow-y: scroll;
+        }
+
+        canvas {
+            border: solid 1px black;
+        }
+
+        .inputs {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .values {
+            display: flex;
+            width: 100%;
+            height: 86vh;
+            justify-content: space-between;
+        }
+
+            .values section {
+                border: 2px solid green;
+            }
+
+        .manage {
+            width: 100%;
+            height: 6vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .count {
+            background-color: #4CAF50;
+            font-size: 1.5rem;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 80%;
+            height: 100%;
+            margin-top: 10px;
+            border: 3px solid #2f6931;
+        }
+
+        .save {
+            background-color: #4CAF50;
+            font-size: 1rem;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 10%;
+            height: 100%;
+            margin-top: 10px;
+            border: 3px solid #2f6931;
+        }
+
+        .load {
+            background-color: #4CAF50;
+            font-size: 1rem;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 10%;
+            height: 100%;
+            margin-top: 10px;
+            border: 3px solid #2f6931;
+        }
+
+            .count:hover, .save:hover, .load:hover {
+                background-color: #45a049;
+            }
+
+        .inner-head {
+            width: 100%;
+            display: flex;
+            margin-right: 10px;
+        }
+
+        .p-title, .p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .legend {
+            padding: 2px;
+        }
+
+        .rand {
+            background-color: #4CAF50;
+            font-size: 1rem;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 15%;
+            height: 100%;
+            margin-top: 10px;
+            border: 3px solid #2f6931;
+        }
+
+        @media(max-width: 1124px) {
+            .values {
+                flex-direction: column;
+            }
+
+            .x0, .z, .f {
+                height: 33%;
+                width: 100%;
+            }
+
+            .count {
+                background-color: #4CAF50;
+                font-size: 1rem;
+            }
+
+            .load, .save {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form id="main">
+
+        <section class="manage">
+            <p>Качество ПО по диссертцаии Долининой О. Н.</p>
+        </section>
+
+        <div class="values">
+            <section class="x0">
+
+                <header>
+                    <div class="inner-head">
+                        <p class="p-title">Параметры</p>
+                        <p class="p">Нач. знач.</p>
+                        <p class="p">Гран. знач.</p>
+                        <p class="p">Норм. знамен.</p>
+                    </div>
+                </header>
+
+                <div class="inputs scrollable">
+                </div>
+            </section>
+
+            <section class="f">
+                <header>
+                    <div class="inner-head">
+                        <p class="p-title">Полиномы</p>
+                    </div>
+                </header>
+
+                <div class="inputs scrollable">
+                </div>
+            </section>
+
+            <section class="z">
+                <header>
+                    <div class="inner-head">
+                        <p class="p-title">Возмущения</p>
+                    </div>
+                </header>
+
+                <div class="inputs scrollable">
+                </div>
+            </section>
+        </div>
+
+        <section class="manage">
+            <button class="rand" type="button" onclick="random()">Заполнить знач.</button>
+            <button class="count" type="submit">Рассчитать</button>
+            <button class="save" type="button" onclick="save()">Сохранить</button>
+            <button class="load" type="button" onclick="load()">Загрузить</button>
+        </section>
+
+    </form>
+
+    <section id="result">
+        <div class="inner">
+            <header class="inner-header">
+                <button type="button" id="close">X</button>
+            </header>
+            <div class="graph scrollable">
+                <canvas id="plot"></canvas>
+                <canvas id="radar1"></canvas>
+                <canvas id="radar2"></canvas>
+                <canvas id="radar3"></canvas>
+                <canvas id="radar4"></canvas>
+                <canvas id="radar5"></canvas>
+                <canvas id="radar6"></canvas>
+                <div class="legend">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Параметры
+        const params = {
+            "1": "функциональные возможности",
+            "2": "надежность",
+            "3": "практичность",
+            "4": "эффективность",
+            "5": "сопровождаемость",
+            "6": "мобильность",
+            "7": "пригодность",
+            "8": "правильность",
+            "9": "способность к взаимодействию",
+            "10": "защищенность",
+            "11": "согласованность системы в целом",
+            "12": "завершенность",
+            "13": "устойчивость к ошибкам",
+            "14": "восстанавливаемость",
+            "15": "доступность",
+            "16": "понятность",
+            "17": "обучаемость",
+            "18": "простота использования",
+            "19": "привлекательность",
+            "20": "противоречивость при выполнении функций",
+            "21": "временная эффективность",
+            "22": "ресурсоемкость",
+            "23": "согласованность",
+            "24": "анализируемость",
+            "25": "изменяемость",
+            "26": "стабильность",
+            "27": "тестируемость",
+            "28": "наличие значительных ошибок в базах знаний",
+            "29": "адаптируемость",
+            "30": "простота установки",
+            "31": "сосуществование",
+            "32": "взаимозаменяемость",
+            "33": "недостатки при оформлении документации",
+        }
+
+        const paramsDiv = document.querySelector("#main .values .x0 .inputs")
+        const legendDiv = document.querySelector(".graph .legend")
+
+        for (let key in params) {
+            paramsDiv.innerHTML +=
+                `<div class="input-block">
+                    <label for="M${key}">[m<sub>${key}</sub>] - ${params[key]}</label>
+                    <input id="M${key}" type="number" step="0.001" min="0" max="1" required value="0.5">
+                    <input id="M${key}max" type="number" step="0.001" min="0" max="1" required value="1">
+                    <input id="normM${key}" type="number" step="0.001" min="0" required value="2">
+                </div>`;
+
+            legendDiv.innerHTML +=
+                `<p>[m<sub>${key}</sub>] - ${params[key]}</p>`;
+        }
+
+        // Полиномы
+        const funcs = {
+            "1": "3",
+            "2": "4",
+            "3": "15",
+            "6": "19",
+            "7": "22",
+            "8": "2",
+            "9": "5",
+            "10": "13",
+            "11": "14",
+            "12": "16",
+            "13": "17",
+            "14": "18",
+            "15": "26",
+            "16": "27",
+            "17": "30",
+            "18": "4",
+            "19": "8",
+            "20": "12",
+            "21": "13",
+            "22": "19",
+            "23": "26",
+            "24": "29",
+            "30": "1",
+            "31": "3",
+            "32": "5",
+            "33": "1",
+            "34": "2",
+            "35": "4",
+            "36": "5",
+            "37": "6",
+            "38": "8",
+            "39": "12",
+            "40": "15",
+            "41": "19",
+            "42": "13",
+            "43": "14",
+            "44": "16",
+            "45": "17",
+            "46": "22",
+            "47": "23",
+            "48": "24",
+            "49": "30",
+            "50": "1",
+            "51": "2",
+            "52": "3",
+            "53": "7",
+            "54": "8",
+            "55": "12",
+            "56": "13",
+            "57": "17",
+            "58": "19",
+            "59": "22",
+            "60": "23",
+            "61": "25",
+            "62": "32",
+            "63": "33",
+            "64": "3",
+            "65": "7",
+            "66": "12",
+            "67": "15",
+            "68": "18",
+            "69": "27",
+            "70": "29",
+            "71": "22",
+            "72": "25",
+            "73": "30",
+            "74": "33",
+            "75": "1",
+            "76": "3",
+            "77": "4",
+            "78": "12",
+            "79": "15",
+            "80": "18",
+            "81": "19",
+            "82": "33",
+            "83": "10",
+            "84": "13",
+            "85": "26",
+            "86": "30",
+            "87": "1",
+            "88": "2",
+            "89": "8",
+            "90": "12",
+            "91": "13",
+            "92": "20",
+            "93": "21",
+            "94": "26",
+            "95": "30",
+            "96": "2",
+            "97": "4",
+            "98": "7",
+            "99": "10",
+            "100": "12",
+            "101": "13",
+            "102": "20",
+            "103": "25",
+            "104": "28",
+            "105": "32",
+            "106": "33",
+            "107": "1",
+            "108": "4",
+            "109": "7",
+            "110": "12",
+            "111": "20",
+            "112": "28",
+            "113": "3",
+            "114": "7",
+            "115": "12",
+            "116": "13",
+            "117": "18",
+            "118": "20",
+            "119": "26",
+            "120": "28",
+            "121": "1",
+            "122": "2",
+            "123": "7",
+            "124": "8",
+            "125": "13",
+            "126": "23",
+            "127": "20",
+            "128": "28",
+            "129": "1",
+            "130": "2",
+            "131": "3",
+            "132": "4",
+            "133": "7",
+            "134": "8",
+            "135": "10",
+            "136": "26",
+            "137": "28",
+            "138": "2",
+            "139": "4",
+            "140": "7",
+            "141": "8",
+            "142": "10",
+            "143": "17",
+            "144": "18",
+            "145": "19",
+            "146": "20",
+            "147": "28",
+            "148": "3",
+            "149": "4",
+            "150": "7",
+            "151": "19",
+            "152": "26",
+            "153": "10",
+            "154": "27",
+            "155": "3",
+            "156": "4",
+            "157": "5",
+            "158": "6",
+            "159": "7",
+            "160": "16",
+            "161": "17",
+            "162": "18",
+            "163": "19",
+            "164": "20",
+            "165": "33",
+            "166": "3",
+            "167": "5",
+            "168": "7",
+            "169": "10",
+            "170": "12",
+            "171": "17",
+            "172": "18",
+            "173": "19",
+            "174": "24",
+            "175": "27",
+            "176": "30",
+            "177": "20",
+            "178": "28",
+            "179": "33",
+            "195": "1",
+            "196": "3",
+            "197": "4",
+            "198": "8",
+            "199": "9",
+            "200": "11",
+            "201": "16",
+            "202": "17",
+            "203": "19",
+            "204": "26",
+            "205": "30",
+            "206": "20",
+            "207": "28",
+            "208": "16",
+            "209": "5",
+            "210": "19",
+            "211": "2",
+            "212": "4",
+            "213": "7",
+            "214": "8",
+            "215": "11",
+            "216": "13",
+            "217": "23",
+            "218": "25",
+            "219": "28",
+            "220": "31",
+            "221": "4",
+            "222": "7",
+            "223": "8",
+            "224": "6",
+            "225": "24",
+            "226": "9",
+            "227": "11",
+            "228": "27",
+            "229": "8",
+            "230": "11",
+            "231": "27",
+            "232": "20",
+            "233": "28",
+            "234": "9",
+            "235": "26",
+            "236": "13",
+            "237": "25",
+            "238": "13",
+            "239": "14",
+            "240": "28",
+            "241": "20",
+            "242": "2",
+            "243": "4",
+            "245": "7",
+            "246": "8",
+            "247": "13",
+            "248": "19",
+            "249": "13",
+            "250": "28",
+            "251": "17",
+            "252": "18",
+            "253": "9",
+            "254": "32",
+            "255": "2",
+            "256": "4",
+            "257": "7",
+            "258": "11",
+            "259": "13",
+            "260": "14",
+            "261": "29",
+            "262": "18",
+            "263": "20",
+            "264": "20",
+            "265": "28",
+            "266": "5",
+            "267": "7",
+            "268": "8",
+            "269": "9",
+            "270": "10",
+            "271": "13",
+            "272": "14",
+            "273": "16",
+            "274": "17",
+            "275": "18",
+            "276": "19",
+            "277": "21",
+            "278": "23",
+            "279": "27",
+            "281": "2",
+            "283": "3",
+            "284": "4",
+            "285": "5",
+            "286": "16",
+            "287": "18",
+            "288": "19",
+            "289": "21",
+            "290": "27",
+            "291": "30",
+            "292": "20",
+            "293": "28",
+        }
+
+        const funcsDiv = document.querySelector("#main .values .f .inputs")
+
+        for (let key in funcs) {
+            funcsDiv.innerHTML +=
+                `<div class="function">
+                    <label class="f-title" for="F${key}-d">f<sub>${key}</sub>(m<sub>${funcs[key]}</sub>) = </label>
+                    <div class="function-block">
+                        <input id="F${key}-a" type="number" step="0.001" required value="0">
+                        <label for="F${key}-a">m<sup>3</sup><sub class="sub">${funcs[key]}</sub>+</label>
+                    </div>
+                    <div class="function-block">
+                        <input id="F${key}-b" type="number" step="0.001" required value="0">
+                        <label for="F${key}-b">m<sup>2</sup><sub class="sub">${funcs[key]}</sub>+</label>
+                    </div>
+                    <div class="function-block">
+                        <input id="F${key}-c" type="number" step="0.001" required value="1">
+                        <label for="F${key}-c">m<sub>${funcs[key]}</sub>+</label>
+                    </div>
+                        <div class="function-block">
+                        <input id="F${key}-d" type="number" step="0.001" required value="0">
+                    </div>
+                </div>`;
+        }
+
+        // Возмущения
+        const zfuncs = ["1", "2", "3", "4", "5", "6", "7"];
+
+        const zfuncsDiv = document.querySelector("#main .values .z .inputs")
+
+        for (let key in zfuncs) {
+            zfuncsDiv.innerHTML +=
+                `<div class="function">
+                    <label class="f-title" for="Z${zfuncs[key]}-d">Fak<sub>${zfuncs[key]}</sub>(t)=</label>
+                    <div class="function-block">
+                        <input id="Z${zfuncs[key]}-a" type="number" step="0.001" required value="0">
+                        <label for="Z${zfuncs[key]}-a">t<sup>3</sup>+</label>
+                    </div>
+                    <div class="function-block">
+                        <input id="Z${zfuncs[key]}-b" type="number" step="0.001" required value="0">
+                        <label for="Z${zfuncs[key]}-b">t<sup>2</sup>+</label>
+                    </div>
+                    <div class="function-block">
+                        <input id="Z${zfuncs[key]}-c" type="number" step="0.001" required value="0">
+                        <label for="Z${zfuncs[key]}-c">t+</label>
+                    </div>
+                    <div class="function-block">
+                        <input id="Z${zfuncs[key]}-d" type="number" step="0.001" required value="0">
+                    </div>
+                </div>`;
+        }
+    </script>
+    <script>
+        const getData = () => {
+            const form = document.querySelector("#main");
+
+            //шаблон JSON-оъекта
+            let data = {
+                'm0': {},
+                'f': {},
+                'c': {},
+                'max': [],
+            };
+
+            let x0s = form.querySelectorAll(".x0 .input-block");
+            for (let i = 0; i < x0s.length; i++) {
+                let key = `M${(i + 1)}`;
+
+                data['m0'][key] = Number(x0s[i].querySelector(`#${key}`).value);
+                data['c']['norm' + key] = Number(x0s[i].querySelector(`#norm${key}`).value);
+                data['max'].push(Number(x0s[i].querySelector(`#${key}max`).value));
+            }
+
+            let zs = form.querySelectorAll(".z .function");
+            for (let i = 0; i < zs.length; i++) {
+
+                let valueA = zs[i].querySelector(`#Z${i + 1}-a`).value;
+                let valueB = zs[i].querySelector(`#Z${i + 1}-b`).value;
+                let valueC = zs[i].querySelector(`#Z${i + 1}-c`).value;
+                let valueD = zs[i].querySelector(`#Z${i + 1}-d`).value;
+
+                data['f'][`Z${i + 1}`] = {
+                    a: Number(valueA),
+                    b: Number(valueB),
+                    c: Number(valueC),
+                    d: Number(valueD)
+                };
+            }
+
+            let fs = form.querySelectorAll(".f .function");
+            for (let i = 0; i < fs.length; i++) {
+
+                let firstLabel = fs[i].querySelector("label");
+                let attr = firstLabel.getAttribute("for");
+                let key = attr.slice(0, attr.length - 2);
+
+                let valueA = fs[i].querySelector(`#${key}-a`).value;
+                let valueB = fs[i].querySelector(`#${key}-b`).value;
+                let valueC = fs[i].querySelector(`#${key}-c`).value;
+                let valueD = fs[i].querySelector(`#${key}-d`).value;
+
+                data['f'][key] = {
+                    a: Number(valueA),
+                    b: Number(valueB),
+                    c: Number(valueC),
+                    d: Number(valueD)
+                };
+            }
+
+            return data;
+        }
+
+        const save = () => {
+            let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(getData()));
+            let dlAnchorElem = document.createElement("a");
+            dlAnchorElem.setAttribute("href", dataStr);
+            dlAnchorElem.setAttribute("download", "IPST-3-2024.json");
+            dlAnchorElem.click();
+        }
+
+        const load = () => {
+            const getFileElement = document.createElement("input");
+            getFileElement.setAttribute("type", "file");
+            getFileElement.click();
+            getFileElement.onchange = (event) => {
+                return new Promise((resolve, reject) => {
+                    const fileReader = new FileReader()
+                    fileReader.onload = (e) => {
+                        let obj = e.target.result;
+                        try {
+                            resolve(JSON.parse(obj));
+                        }
+                        catch {
+                            alert("Неверный формат файла");
+                        }
+                    }
+                    fileReader.readAsText(event.target.files[0]);
+                }).then(data => {
+
+                    let x0s = form.querySelectorAll(".x0 .input-block");
+                    for (let i = 0; i < x0s.length; i++) {
+                        let key = `M${(i + 1)}`;
+
+                        x0s[i].querySelector(`#${key}`).value = data['m0'][key];
+                        x0s[i].querySelector(`#norm${key}`).value = data['c']['norm' + key];
+                        x0s[i].querySelector(`#${key}max`).value = data['max'][i];
+                    }
+
+                    let zs = form.querySelectorAll(".z .function");
+                    for (let i = 0; i < zs.length; i++) {
+                        zs[i].querySelector(`#Z${i + 1}-a`).value = data['f'][`Z${i + 1}`].a
+                        zs[i].querySelector(`#Z${i + 1}-b`).value = data['f'][`Z${i + 1}`].b
+                        zs[i].querySelector(`#Z${i + 1}-c`).value = data['f'][`Z${i + 1}`].c
+                        zs[i].querySelector(`#Z${i + 1}-d`).value = data['f'][`Z${i + 1}`].d
+                    }
+
+                    let fs = form.querySelectorAll(".f .function");
+                    for (let i = 0; i < fs.length; i++) {
+
+                        let firstLabel = fs[i].querySelector("label");
+                        let attr = firstLabel.getAttribute("for");
+                        let key = attr.slice(0, attr.length - 2);
+
+                        fs[i].querySelector(`#${key}-a`).value = data['f'][key].a
+                        fs[i].querySelector(`#${key}-b`).value = data['f'][key].b
+                        fs[i].querySelector(`#${key}-c`).value = data['f'][key].c
+                        fs[i].querySelector(`#${key}-d`).value = data['f'][key].d
+                    }
+                }).catch((err => {
+                    alert(err);
+                }))
+            }
+        }
+    </script>
+    <script>
+
+        //Инициализация холстов для отрисовки графика и лепестковых диаграмм с применением Chart.js
+        const plot = document.getElementById('plot');
+        const radar1 = document.getElementById('radar1');
+        const radar2 = document.getElementById('radar2');
+        const radar3 = document.getElementById('radar3');
+        const radar4 = document.getElementById('radar4');
+        const radar5 = document.getElementById('radar5');
+        const radar6 = document.getElementById('radar6');
+
+        //основные элементы страницы
+        const form = document.querySelector("#main");
+        const resWin = document.getElementById('result');
+        const resultDown = document.getElementById('close');
+
+        //объект доступа к холстам с графиками и диаграммами
+        let chartObjects = {
+            'plot': null,
+            't = 0': null,
+            't = 0.2': null,
+            't = 0.4': null,
+            't = 0.6': null,
+            't = 0.8': null,
+            't = 1': null,
+        }
+
+        //при отправке формы - формируем JSON-объект, требуемый для POST-запроса на вычиления
+        form.onsubmit = (e) => {
+            e.preventDefault();
+
+            let localData = getData();
+
+            //выполняем запрос при помощи FETCH
+            fetch('/api/lab3/count', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(localData)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    // на основе полученного ответа отриосвываем графики, на ранее заданных холстах:
+                    let sol = res['message'];
+                    creatrGraph(sol);
+                    createRadar('t = 0', radar1, sol[0], localData.max);
+                    createRadar('t = 0.2', radar2, sol[4], localData.max);
+                    createRadar('t = 0.4', radar3, sol[8], localData.max);
+                    createRadar('t = 0.5', radar4, sol[12], localData.max);
+                    createRadar('t = 0.8', radar5, sol[16], localData.max);
+                    createRadar('t = 1', radar6, sol[20], localData.max);
+                })
+                .then(
+                    res => {
+                        resWin.style.display = "flex"
+                    }
+                )
+                .catch(e => alert("Нет решений!"));
+            ;
+        }
+
+        //скрыть окно результатов при закрытии
+        resultDown.onclick = () => {
+            resWin.style.display = "none";
+        }
+
+        //отрисовка графиков изменения параметров xi(t) на основе объекта решений solution
+        const creatrGraph = (solution) => {
+
+            //удаляем старый график
+            chartObjects['plot']?.destroy();
+
+            //готовим шаблон для построения графика
+            let data = {
+                labels: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1],
+                datasets: [],
+            }
+
+            //заполняем массив datasets из шаблона
+            for (let i = 0; i < solution[0].length; i++) {
+
+                // получаем ряд значений для каждого параметра xi(t)
+                let values = [];
+                for (let j = 0; j < solution.length; j++) {
+                    values.push(solution[j][i]);
+                }
+
+                //формируем график очередного параметра xi(t)
+                let dataset = {
+                    label: 'm' + (i + 1),
+                    data: values,
+                    fill: false,
+                    borderColor: getColor(i),
+                    tension: 0.1,
+                    pointRadius: 2,
+                    borderDash: getLineStyle(i),
+                }
+                data.datasets.push(dataset);
+            }
+
+            // Отрисовываем график
+            chartObjects['plot'] = new Chart(plot, {
+                type: 'line',
+                data: data,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right',
+                        }
+                    },
+                }
+            });
+        }
+
+        //отрисовка лепестковых диаграмм для заданного временного среза на основе:
+        // имени диаграммы chartName в объекте chartObjects
+        // элемента холста plot
+        // значений на срезе solutionI
+        // границах нормы max
+        const createRadar = (chartName, plot, solutionI, max) => {
+
+            //удаляем старую диаграмму
+            chartObjects[chartName]?.destroy();
+
+            //готовим шаблон для построения диаграммы
+            let data = {
+                labels: ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13', 'm14', 'm15', 'm16', 'm17', 'm18', 'm19', 'm20', 'm21', 'm22',
+                    'm23', 'm24', 'm25', 'm26', 'm27', 'm28', 'm29', 'm30', 'm31', 'm32', 'm33'],
+                datasets: [
+                    {
+                        label: 'Значения параметров',
+                        data: solutionI,
+                        fill: false,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgb(54, 162, 235)',
+                    },
+                    {
+                        label: 'Границы нормы',
+                        data: max,
+                        fill: true,
+                        backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                        borderColor: 'rgb(255, 99, 132)',
+                    },
+                ],
+            }
+
+            // Отрисовываем диаграмму
+            chartObjects[chartName] = new Chart(plot, {
+                type: 'radar',
+                data: data,
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Срез значений при ' + chartName,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Стилизация графиков
+        function getRandomColor() {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        const colors = ["red", "orange", "rgb(213, 216, 0)", "rgb(7, 203, 0)", "green", "rgb(0, 207, 166)", "blue", "violet", "purple", "black", "brown", "gray"];
+
+        function getColor(i) {
+            return colors[i % colors.length];
+        }
+        function getLineStyle(i) {
+            if (i <= colors.length - 1) return [];
+            if (i <= 2 * colors.length - 1) return [5, 2];
+            if (i <= 3 * colors.length - 1) return [20, 5, 20, 5];
+        }
+
+        function random() {
+            let x0s = form.querySelectorAll(".x0 .input-block");
+            for (let i = 0; i < x0s.length; i++) {
+                let key = `M${(i + 1)}`;
+
+                x0s[i].querySelector(`#${key}`).value = (0.35 + Math.random() * 0.5).toFixed(2);
+                x0s[i].querySelector(`#norm${key}`).value = 1;
+                x0s[i].querySelector(`#${key}max`).value = 1;
+            }
+
+            let zs = form.querySelectorAll(".z .function");
+            for (let i = 0; i < zs.length; i++) {
+                zs[i].querySelector(`#Z${i + 1}-a`).value = (-0.1 + Math.random() / 5).toFixed(2);
+                zs[i].querySelector(`#Z${i + 1}-b`).value = (-0.1 + Math.random() / 5).toFixed(2);
+                zs[i].querySelector(`#Z${i + 1}-c`).value = (-0.1 + Math.random() / 5).toFixed(2);
+                zs[i].querySelector(`#Z${i + 1}-d`).value = (-0.1 + Math.random() / 5).toFixed(2);
+            }
+
+            let fs = form.querySelectorAll(".f .function");
+            for (let i = 0; i < fs.length; i++) {
+
+                let firstLabel = fs[i].querySelector("label");
+                let attr = firstLabel.getAttribute("for");
+                let key = attr.slice(0, attr.length - 2);
+
+                fs[i].querySelector(`#${key}-a`).value = (Math.random() / 10).toFixed(2);
+                fs[i].querySelector(`#${key}-b`).value = (Math.random() / 10).toFixed(2);
+                fs[i].querySelector(`#${key}-c`).value = (Math.random() / 5).toFixed(2);
+                fs[i].querySelector(`#${key}-d`).value = (Math.random() / 5).toFixed(2);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
